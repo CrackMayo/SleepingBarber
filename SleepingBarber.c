@@ -65,7 +65,7 @@ void cliente(void *args){
 
 		}
 		else{
-			V(&mutex); /
+			V(&mutex); 
 			printf("Cliente rechazado\n");
 		
 		}
