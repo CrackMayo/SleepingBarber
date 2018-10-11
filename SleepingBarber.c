@@ -38,7 +38,7 @@ void V(sem_t *s){
 }
 
 
-/*Método para el barbero*/
+
 void barbero(void *args){
 	while(1){
 		P(&clientes); 
@@ -52,3 +52,22 @@ void barbero(void *args){
 	}
 }
 
+void cliente(void *args){
+		printf("Cliente ha llegado\n");
+		P(&mutex); 
+    		if(clientesEspera<numSillas){ 
+			clientesEspera++; 
+			printf("Cliente aceptado\n");
+			V(&clientes);
+			V(&mutex); 
+			P(&barberos); 
+			printf("Cliente siendo afeitado, (clientes en espera: %d)\n", clientesEspera);
+
+		}
+		else{
+			V(&mutex); /
+			printf("Cliente rechazado\n");
+		
+		}
+	
+}
